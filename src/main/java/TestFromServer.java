@@ -10,11 +10,14 @@ import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestFromServer {
-    public static void main(String[] args) throws JAXBException {
+    public static void main(String[] args) throws JAXBException, FileNotFoundException {
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target("http://197.1.158.33:5000/");
         /*WebTarget target1 = target.path("elyes").path("mansour");
@@ -55,5 +58,7 @@ public class TestFromServer {
             }
         }
         marshaller.marshal(layout, System.out);
+        OutputStream os = new FileOutputStream("../AndroidTest/app/src/main/res/layout/layout.xml");
+        marshaller.marshal(layout, os);
     }
 }
